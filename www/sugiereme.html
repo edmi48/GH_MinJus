@@ -66,12 +66,15 @@
 					 texto=texto+"\n\nNombre: "+document.getElementById("t_nombre").value+"\nTeléfono: "+document.getElementById("t_telefono").value;
 					 correo_para='simonmoya@gmail.com';
 					 alert(correo_para);
+					 var correo_to= new Array();
+					 correo_to.push("simonmoya@gmail.com");
+					 correo_to.push("edmi48@gmail.com");
 					 cordova.require('cordova/plugin/emailcomposer').showEmailComposer(
 							function() { console.log( 'successfully called email composer' ); },
 							function() { console.log( 'failed to call email composer' ); },
 							asunto,
 							texto,
-							[correo_para],
+							correo_to,
 							[],
 							[],
 							false,
