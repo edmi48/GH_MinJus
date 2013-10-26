@@ -11,6 +11,27 @@
     var data_busqueda = [];
 	inicializa_db();
 	
+		function abrir_opcion(pagina) 
+{ 
+if (checkConnection() == 1) {
+	window.location = (pagina); 
+}
+else  $.Zebra_Dialog('<strong>No es posible ejecutar esta funcionalidad sin Conexión a Internet</strong>', {
+    'type':     'error',
+    'title':    'Sin Conexión a Internet'
+});
+} 
+
+function checkConnection() 
+		{
+		 if(navigator.connection.type == Connection.NONE){ 
+		  var conexion = 0;
+		  }else{
+			var conexion = 1;
+		  }
+		 return conexion;
+        }
+	
     function inicializa_db() 
 	{
      db = openDatabase("ejemplo3.db3", "1.0", "Ministerio de Justicia", 500000);
@@ -35,7 +56,7 @@
 						 {
 						  if (suggestion.data == 'Casa de Justicia') icono = 'images/cj.png'
 						  else icono = 'images/ccc.png'
-					      var thehtml = '<a href="mapa.html?Entidad='+suggestion.data+' target="_self"><img src="'+icono+'" height="42" width="42">&nbsp;&nbsp;' + suggestion.data + ' (Ver mapa)</a> <br> <strong>Entidad Encargada</strong> ' + suggestion.data2 + ' <br> <strong>Descripción Conflicto:</strong> ' + suggestion.data3;
+					      var thehtml = '<a href="#" onclick=\'abrir_opcion("mapa.html?Entidad='+suggestion.data+'");return false\'><img src="'+icono+'" height="42" width="42">&nbsp;&nbsp;' + suggestion.data + ' (Ver mapa)</a> <br> <strong>Entidad Encargada</strong> ' + suggestion.data2 + ' <br> <strong>Descripción Conflicto:</strong> ' + suggestion.data3;
 					      $('#resultado').html(thehtml);
 					     }
 						});	
