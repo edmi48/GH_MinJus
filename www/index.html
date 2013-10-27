@@ -78,9 +78,11 @@
 	  } 
 	  var ventana_medio = ventana_alto2/2;
   
-	  if ($(window).width() < 300) factor = 20;
+	  if ($(window).width() < $(window).height()) factor = 7.22;
 	 else factor = 6.30;
 
+	 if ($(window).width() < 300)
+	 
 	 var ventana_ancho = ($(window).width()/4)-20;
 	 document.write('<style> .shop{top:'+
 				    ventana_alto/10*factor+'px;left:'+
