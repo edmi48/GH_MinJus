@@ -39,7 +39,7 @@ function checkConnection()
   	 db.transaction(function(tx) 
 				    {
 				
-            	  	 tx.executeSql("SELECT b.nombre_palabra_clave, a.programa, a.descripcion_tipo_informacion, a.entidad_encargada FROM informacion_programa a, palabra_clave b Where a.id_programa = b.id_programa Order by 1", [],
+            	  	 tx.executeSql("SELECT DISTINCT b.nombre_palabra_clave, a.programa, a.descripcion_tipo_informacion, a.entidad_encargada FROM informacion_programa a, palabra_clave b Where a.id_programa = b.id_programa Order by 1", [],
                   	 function(tx, result)
 					 {
 					  contador = result.rows.length - 1; 
