@@ -12,15 +12,8 @@
 		<script type="text/javascript" language="javascript" src="js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" language="javascript" src="js/jquery.dataTables.js"></script>
 		<script type="text/javascript" charset="utf-8">
-
-function detalle (){
-	var ubica;
-	ubica=
-	alert (ubica);
-}
-
-	var aDataSet = [];
-
+			var aDataSet = [];
+			
     function carga()
 	{
      db = openDatabase("ejemplo3.db3", "1.0", "Ministerio de Justicia", 500000);
@@ -33,11 +26,13 @@ function detalle (){
 					  contador = result.rows.length - 1; 
                    	  for(var i=0; i < result.rows.length; i++) 
 					  {
-					   ubicacion = result.rows.item(i)['departamento']+" - "+result.rows.item(i)['nombre_lugar']
-					   aDataSet.push([result.rows.item(i)['tipo_programa'], ubicacion,result.rows.item(i)['direccion_lugar'],"<a href='#' onclick='detalle();'>Ver Más</a>"]);
+					   if (result.rows.item(i)['departamento'] == result.rows.item(i)['municipio']) ubicacion = result.rows.item(i)['codigo_dane_municipio'];
+					  else ubicacion = result.rows.item(i)['departamento']+" - "+result.rows.item(i)['municipio']
+
+					   aDataSet.push([result.rows.item(i)['tipo_programa'], ubicacion+" "+result.rows.item(i)['direccion_lugar']+" "+result.rows.item(i)['barrio_lugar'],result.rows.item(i)['telefono_lugar'],result.rows.item(i)['email']]);
                    	  }
 
-			$('#dynamic').html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="tblTabla" width="50px"></table>' );
+			$('#dynamic').html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="tblTabla"></table>' );
 				$('#tblTabla').dataTable( {
 					"sPaginationType": "full_numbers",
 					"oLanguage": {
@@ -45,8 +40,8 @@ function detalle (){
             "sZeroRecords": "No hay resultados, intente otra b&uacute;squeda",
             "sInfo": "Registro del _START_ a _END_ de _TOTAL_ registros",
             "sInfoEmpty": "Registro 0 a 0 de 0 records",
-            "sInfoFiltered": "(Filtrado de un total de _MAX_ registros)",
-					"sSearch": "Filtrar por cualquier columna:",
+            "sInfoFiltered": "(filtered from _MAX_ total records)",
+					"sSearch": "Buscar:",
 			      "oPaginate": {
         "sFirst": "Inicio",
 		"sLast": "Fin",
@@ -60,10 +55,10 @@ function detalle (){
 			
 					"aaData": aDataSet,
 					"aoColumns": [
-						{ "sTitle": "Programa", "sWidth": "40px" },
-						{ "sTitle": "Ubicación", "sWidth": "60px" },
-						{ "sTitle": "Dirección", "sWidth": "30px" },
-						{ "sTitle": "Ver Más", "sWidth": "20px" }
+						{ "sTitle": "Programa", "sWidth": "80px" },
+						{ "sTitle": "Ubicación", "sWidth": "160px" },
+						{ "sTitle": "Teléfono", "sWidth": "80px" },
+						{ "sTitle": "E-mail", "sWidth": "80px" }
 					]
 				} );				
                   	 });
@@ -84,8 +79,8 @@ carga();
 </div>
 <br><br><br><br>
 </div>
-		<div id="container" align="center" width="80px">			
-			<div id="dynamic" align="center" ></div>
+		<div id="container" align="center">			
+			<div id="dynamic" align="center"></div>
 		</div>				
 	</body>
 </html>
