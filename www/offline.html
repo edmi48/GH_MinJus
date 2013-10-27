@@ -12,8 +12,15 @@
 		<script type="text/javascript" language="javascript" src="js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" language="javascript" src="js/jquery.dataTables.js"></script>
 		<script type="text/javascript" charset="utf-8">
-			var aDataSet = [];
-			
+
+function detalle (){
+	var ubica;
+	ubica=
+	alert (ubica);
+}
+
+	var aDataSet = [];
+
     function carga()
 	{
      db = openDatabase("ejemplo3.db3", "1.0", "Ministerio de Justicia", 500000);
@@ -26,10 +33,8 @@
 					  contador = result.rows.length - 1; 
                    	  for(var i=0; i < result.rows.length; i++) 
 					  {
-					   if (result.rows.item(i)['departamento'] == result.rows.item(i)['municipio']) ubicacion = result.rows.item(i)['codigo_dane_municipio'];
-					  else ubicacion = result.rows.item(i)['departamento']+" - "+result.rows.item(i)['municipio']
-
-					   aDataSet.push([result.rows.item(i)['tipo_programa'], ubicacion+" "+result.rows.item(i)['direccion_lugar']+" "+result.rows.item(i)['barrio_lugar'],result.rows.item(i)['telefono_lugar'],result.rows.item(i)['email']]);
+					   ubicacion = result.rows.item(i)['departamento']+" - "+result.rows.item(i)['nombre_lugar']
+					   aDataSet.push([result.rows.item(i)['tipo_programa'], ubicacion,result.rows.item(i)['direccion_lugar'],"<a href='#' onclick='detalle();'>Ver Más</a>"]);
                    	  }
 
 			$('#dynamic').html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="tblTabla" width="50px"></table>' );
@@ -40,8 +45,8 @@
             "sZeroRecords": "No hay resultados, intente otra b&uacute;squeda",
             "sInfo": "Registro del _START_ a _END_ de _TOTAL_ registros",
             "sInfoEmpty": "Registro 0 a 0 de 0 records",
-            "sInfoFiltered": "(filtered from _MAX_ total records)",
-					"sSearch": "Buscar:",
+            "sInfoFiltered": "(Filtrado de un total de _MAX_ registros)",
+					"sSearch": "Filtrar por cualquier columna:",
 			      "oPaginate": {
         "sFirst": "Inicio",
 		"sLast": "Fin",
@@ -57,8 +62,8 @@
 					"aoColumns": [
 						{ "sTitle": "Programa", "sWidth": "40px" },
 						{ "sTitle": "Ubicación", "sWidth": "60px" },
-						{ "sTitle": "Teléfono", "sWidth": "30px" },
-						{ "sTitle": "E-mail", "sWidth": "20px" }
+						{ "sTitle": "Dirección", "sWidth": "30px" },
+						{ "sTitle": "Ver Más", "sWidth": "20px" }
 					]
 				} );				
                   	 });
@@ -74,13 +79,13 @@ carga();
 	<body id="dt_example" align="center">
 <div id="categories" data-role="page" data-title="Búsqueda de Información" style="background-image: url('images/fondo_2.jpg'); background-repeat:no-repeat; background-size:100% 100%; background-position: absolute">
 <div height=200px style="background-image: url('images/cabecera1.png'); background-repeat:no-repeat; background-size:100% 100%; background-position: absolute">
+<div> 
+<a href="orientate.html"> <img src="images/regresar.png" class="imagen-link" height="60px" width="60px" align="left" style="margin: 5px 8px"></a>
+</div>
 <br><br><br><br>
 </div>
 		<div id="container" align="center" width="80px">			
 			<div id="dynamic" align="center" ></div>
-		</div>	
-			
-	 <p><a href="orientate.html" data-direction="reverse" data-role="button" data-theme="b">Regresar</a></p>			
-			
+		</div>				
 	</body>
 </html>
