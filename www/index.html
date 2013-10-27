@@ -120,15 +120,12 @@ else  $.Zebra_Dialog('<strong>No es posible ejecutar esta funcionalidad sin Cone
 function abrir_twitter()
 {
  if (device.platform  == 'iOS') 
- /*$.Zebra_Dialog('<strong>Funcionalidad No Disponible para iOS</strong>', {
-    'type':     'warning',
-    'title':    'Advertencia'
-});*/
-window.open('https://mobile.twitter.com/MinjusticiaCo', '_blank', 'location=yes');
-//window.location = ('sigueme_ios.html'); 
+	if (checkConnection() == 1) {
+		window.open('https://mobile.twitter.com/MinjusticiaCo', '_blank', 'location=yes');
+	}
  else {
- pagina="sigueme.html";
- abrir_opcion("sigueme.html");
+	 pagina="sigueme.html";
+	 abrir_opcion("sigueme.html");
  }
 } 
         function checkConnection() 
