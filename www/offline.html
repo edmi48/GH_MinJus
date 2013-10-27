@@ -32,7 +32,7 @@
 					   aDataSet.push([result.rows.item(i)['tipo_programa'], ubicacion+" "+result.rows.item(i)['direccion_lugar']+" "+result.rows.item(i)['barrio_lugar'],result.rows.item(i)['telefono_lugar'],result.rows.item(i)['email']]);
                    	  }
 
-			$('#dynamic').html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="tblTabla"></table>' );
+			$('#dynamic').html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="tblTabla" width="50px"></table>' );
 				$('#tblTabla').dataTable( {
 					"sPaginationType": "full_numbers",
 					"oLanguage": {
@@ -55,10 +55,10 @@
 			
 					"aaData": aDataSet,
 					"aoColumns": [
-						{ "sTitle": "Programa", "sWidth": ($(window).width())/5 },
-						{ "sTitle": "Ubicación", "sWidth": (($(window).width())/5)*2 },
-						{ "sTitle": "Teléfono", "sWidth": ($(window).width())/5 },
-						{ "sTitle": "E-mail", "sWidth": ($(window).width())/5 }
+						{ "sTitle": "Programa", "sWidth": "40px" },
+						{ "sTitle": "Ubicación", "sWidth": "60px" },
+						{ "sTitle": "Teléfono", "sWidth": "30px" },
+						{ "sTitle": "E-mail", "sWidth": "20px" }
 					]
 				} );				
                   	 });
@@ -76,8 +76,8 @@ carga();
 <div height=200px style="background-image: url('images/cabecera1.png'); background-repeat:no-repeat; background-size:100% 100%; background-position: absolute">
 <br><br><br><br>
 </div>
-		<div id="container" align="center">			
-			<div id="dynamic" align="center"></div>
+		<div id="container" align="center" width="80px">			
+			<div id="dynamic" align="center" ></div>
 		</div>	
 			
 	 <p><a href="orientate.html" data-direction="reverse" data-role="button" data-theme="b">Regresar</a></p>			
