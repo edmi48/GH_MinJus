@@ -38,7 +38,7 @@ function actualiza_informacion(tabla, url)
 		    var id_registro = 1;
 			var id_palabra = 1;
 			actualizame = 1;
-			//alert('Entra a actualizar '+tabla);
+			alert('Entra a actualizar '+tabla);
 			$.each(r.d, function(k, v) {
 				if (tabla == 'informacion_programa') 
 				{
@@ -99,7 +99,7 @@ function actualiza_informacion(tabla, url)
               tx.executeSql("Select count(*) as numero From "+tabla, [],
                  function(tx, result){
                      for(var i=0; i < result.rows.length; i++) var contador = [result.rows.item(i)['numero']];
-					 //alert("Informacion "+tabla+": "+contador);
+					 alert("Informacion "+tabla+": "+contador);
 					 if (tabla == 'ubicacion_programa')
 			  $.Zebra_Dialog('<strong>Actualización de Información Finalizada exitósamente</strong>', {
 							'type':     'information',
