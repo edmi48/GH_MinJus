@@ -104,7 +104,6 @@
 
 	
     <!-- Incorporaión de Plugins -->
-	<gap:plugin name="com.phonegap.plugins.childbrowser" version="4.2.1" />	
 	<gap:plugin name="com.phonegap.plugins.emailcomposer" version="1.3" />
 	
 	
