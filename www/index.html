@@ -119,10 +119,15 @@ else  $.Zebra_Dialog('<strong>No es posible ejecutar esta funcionalidad sin Cone
 
 function abrir_twitter()
 {
- if (device.platform  == 'iOS') 
+ if (device.platform  == 'iOS') {
 	if (checkConnection() == 1) {
 		window.open('https://mobile.twitter.com/MinjusticiaCo', '_blank', 'location=yes');
 	}
+	else  $.Zebra_Dialog('<strong>No es posible ejecutar esta funcionalidad sin Conexión a Internet</strong>', {
+		'type':     'error',
+		'title':    'Sin Conexión a Internet'
+	});
+}
  else {
 	 pagina="sigueme.html";
 	 abrir_opcion("sigueme.html");

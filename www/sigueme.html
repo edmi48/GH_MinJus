@@ -58,7 +58,7 @@
 				   {
 			        final = final + ' <a class="twitter-timeline" href="https://twitter.com/twitterapi" data-widget-id="'+id_owner+'" data-screen-name="'+result.rows.item(i)['valor_parametro']+'" width=100% height=120 lang="ES">'+result.rows.item(i)['convencion_parametro']+'</a> ';  
                    }
-				   final = final + ' <p><a href="index.html" data-direction="reverse" data-role="button" data-theme="b">Regresar</a></p> ';
+				   final = final + '  ';
 				   principal.innerHTML = final;
 				   capa.appendChild(tweet);   
 				   !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="http://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");

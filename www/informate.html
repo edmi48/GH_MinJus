@@ -24,6 +24,7 @@
   function youtube(search_input,componente) { 
     var keyword= encodeURIComponent(search_input); 
     var yt_url='http://gdata.youtube.com/feeds/api/videos?q='+keyword+'&format=5&max-results=1&v=2&alt=jsonc';  
+	var video_ancho= $(window).width() -40;
     $.ajax({ 
       type: "GET", 
       url: yt_url, 
@@ -34,7 +35,7 @@
             var video_id=data.id; 
             var video_title=data.title; 
             var video_viewCount=data.viewCount; 
-            var video_frame="<iframe width=350 height=200 src='http://www.youtube.com/embed/"+video_id+"?rel=0' frameborder=0 allowfullscreen></iframe>"; 
+            var video_frame="<iframe width="+video_ancho+" height=200 src='http://www.youtube.com/embed/"+video_id+"?rel=0' frameborder=0 allowfullscreen></iframe>"; 
             final= "<div align=center><div class=redondeo>"+video_frame+"</div></div>"; 
 			var capa = document.getElementById(componente);
 			var video = document.createElement("div");
