@@ -1,7 +1,7 @@
 ﻿function inicializa_db() 
 {
  var db;
- db = openDatabase("ejemplo3.db3", "1.0", "Ministerio de Justicia", 500000);
+ db = window.openDatabase("ejemplo3.db3", "1.0", "Ministerio de Justicia", 500000);
  if (db) 
  {
             // Database opened

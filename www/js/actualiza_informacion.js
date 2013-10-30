@@ -18,8 +18,8 @@ function actualiza_progressbar(porc_ini,porc_fin)
 function actualiza_set_datos()
 {
  var db;
- db = openDatabase("ejemplo3.db3", "1.0", "Ministerio de Justicia", 500000);
  $.Zebra_Dialog('<strong>Inicia proceso de actualización de información de click en aceptar y por favor espere un momento a que el proceso finalice...', {
+ db = window.openDatabase("ejemplo3.db3", "1.0", "Ministerio de Justicia", 500000);
     'type':     'information',
     'title':    'Actualización de Información',
     'buttons':  ['Aceptar'],
@@ -105,7 +105,7 @@ function actualiza_informacion(tabla, url)
 		{
 
  var db;
- db = openDatabase("ejemplo3.db3", "1.0", "Ministerio de Justicia", 500000);
+ db = window.openDatabase("ejemplo3.db3", "1.0", "Ministerio de Justicia", 500000);
  if (db) 
  {
         db.transaction( function(tx) {
