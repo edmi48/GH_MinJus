@@ -25,10 +25,13 @@
 			var DataSet_CCC = [];
 			var auxiliar='';
 			
-    function abre_popup(dato)
+    function abre_popup(programa,ubicacion,direccion,telefono,email)
    {
+    if (programa == 1) var html = "<b><img src='images/cj.png'>Casa de Justicia</img></b><br>";
+	else var html = "<b><img src='images/ccc.png'>Centro de Convivencia Ciudadana</img></b><br>";
+    html += "<b>"+ubicacion+"</b><br><b>Dirección</b><br>"+direccion+"<br><b>Teléfono(s)</b><br>"+telefono+"<br><b>E-mail(s)</b><br>"+email;
 	var capa = document.getElementById('contenido');
-	capa.innerHTML = dato;
+	capa.innerHTML = html;
 	$( "#popupCloseRight" ).popup( "open", "data-position-to='window'" );
    }	
 
@@ -38,18 +41,20 @@
 
  	 db.transaction(function(tx) 
 				    {
-            	  	 tx.executeSql("SELECT tipo_programa, departamento, municipio, nombre_lugar, direccion_lugar, barrio_lugar, telefono_lugar, email FROM ubicacion_programa order by tipo_programa, departamento, municipio", [],
+            	  	 tx.executeSql("SELECT tipo_programa, departamento, municipio, nombre_lugar, direccion_lugar, barrio_lugar, telefono_lugar, email FROM ubicacion_programa order by tipo_programa, departamento, municipio, direccion_lugar", [],
                   	 function(tx, result)
 					 {
 					  contador = result.rows.length - 1; 
                    	  for(var i=0; i < result.rows.length; i++) 
 					  {
-					   if (result.rows.item(i)['departamento'] == result.rows.item(i)['municipio']) ubicacion = result.rows.item(i)['codigo_dane_municipio'];
-					  else ubicacion = result.rows.item(i)['departamento']+" - "+result.rows.item(i)['municipio']
+					   if (result.rows.item(i)['departamento'] == result.rows.item(i)['municipio']) ubicacion = "";
+					   else ubicacion = " - "+result.rows.item(i)['municipio'];
+					   if (result.rows.item(i)['barrio_lugar'] == 'No Registra') direccion = result.rows.item(i)['direccion_lugar'];
+					   else direccion = result.rows.item(i)['direccion_lugar']+"<br>"+result.rows.item(i)['barrio_lugar'];
 					   if (result.rows.item(i)['tipo_programa'] == 'Casa de Justicia')
-					    DataSet_CJ.push(["<b>"+ubicacion+"</b> <br> "+result.rows.item(i)['direccion_lugar']+" <br> "+result.rows.item(i)['barrio_lugar'], result.rows.item(i)['telefono_lugar'],"<a href='#' OnClick='abre_popup(\""+result.rows.item(i)['email']+"\")';>"+result.rows.item(i)['email']+"</a>"]);
+					    DataSet_CJ.push([result.rows.item(i)['departamento'],result.rows.item(i)['municipio'],result.rows.item(i)['direccion_lugar'], "<a href='#' OnClick='abre_popup(1,\""+result.rows.item(i)['departamento']+ubicacion+"\",\""+direccion+"\",\""+result.rows.item(i)['telefono_lugar']+"\",\""+result.rows.item(i)['email']+"\")';> <br>Ver Más..</a><br>&nbsp;"]);
 					   else
-					    DataSet_CCC.push(["<b>"+ubicacion+"</b> <br> "+result.rows.item(i)['direccion_lugar']+" <br> "+result.rows.item(i)['barrio_lugar'], result.rows.item(i)['telefono_lugar'],"<a href='#popupCloseRight' data-rel='popup' data-position-to='window'>"+result.rows.item(i)['email']+"</a>"]);
+					    DataSet_CCC.push([result.rows.item(i)['departamento'],result.rows.item(i)['municipio'],result.rows.item(i)['direccion_lugar'], "<a href='#' OnClick='abre_popup(2,\""+result.rows.item(i)['departamento']+ubicacion+"\",\""+direccion+"\",\""+result.rows.item(i)['telefono_lugar']+"\",\""+result.rows.item(i)['email']+"\")';> <br>Ver Más..</a><br>&nbsp;"]);
                    	  }
 
 				$("#tabs").tabs( {
@@ -61,15 +66,7 @@
 					}
 				} );
 				
-				$('table.display').dataTable( {
-					"sScrollY": "200px",
-					"bScrollCollapse": true,
-					"bPaginate": false,
-					"bJQueryUI": true,
-					"aoColumnDefs": [
-						{ "sWidth": "10%", "aTargets": [ -1 ] }
-					]
-				} );
+
 
 			$('#tabla_1').html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="tblTabla"></table>' );
 			$('#tabla_2').html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="tblTabla2"></table>' );
@@ -95,9 +92,10 @@
 			
 					"aaData": DataSet_CJ,
 					"aoColumns": [
-						{ "sTitle": "Ubicación", "sWidth": "160px" },
-						{ "sTitle": "Teléfono", "sWidth": "80px" },
-						{ "sTitle": "E-mail", "sWidth": "80px" }
+						{ "sTitle": "Depto", "sWidth": "40px" },
+						{ "sTitle": "Municipio", "sWidth": "40px" },
+						{ "sTitle": "Dirección", "sWidth": "100px" },
+						{ "sTitle": "Más Información", "sWidth": "40px" }
 					]
 				} );		
 
@@ -123,9 +121,10 @@
 			
 					"aaData": DataSet_CCC,
 					"aoColumns": [
-						{ "sTitle": "Ubicación", "sWidth": "160px" },
-						{ "sTitle": "Teléfono", "sWidth": "80px" },
-						{ "sTitle": "E-mail", "sWidth": "80px" }
+						{ "sTitle": "Depto", "sWidth": "40px" },
+						{ "sTitle": "Municipio", "sWidth": "40px" },
+						{ "sTitle": "Dirección", "sWidth": "100px" },
+						{ "sTitle": "Más Información", "sWidth": "40px" }
 					]
 				} );
 				

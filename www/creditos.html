@@ -20,7 +20,7 @@ ratio = 1;
  
 if (screenWidth/screenHeight > ratio) {
 $(bg).height("95%");
-$(bg).width("60%");
+$(bg).width("100%");
 } else {
 $(bg).width("100%");
 $(bg).height("90%");
@@ -57,10 +57,22 @@ updateBackground();
     </head>
 	
 <body>
-<center><div id="container" style="width: 100%; height: 90%; margin: auto auto">
-<img src="images/creditos.png" alt="Fondo" id="bg">
-<p><a href="index.html" data-direction="reverse" data-role="button" data-theme="b">Regresar</a></p>
-</div></center>
+<script> 
+	document.write('<div>')
+	document.write('<div height=200px style="background-image: url(images/cabecera9.png); background-repeat:no-repeat; background-size:100% 100%; background-position: absolute">')
+	document.write('<div>') 
+	document.write('<a href="index.html"> <img src="images/regresar.png" class="imagen-link" height="60px" width="60px" align="left" style="margin: 5px 8px"></a>')
+	document.write('</div>')
+	document.write('<br><br><br><br>')
+	document.write('</div>')
+	if ($(window).width() < $(window).height()) {
+		document.write('<img src="images/creditos.png" alt="Fondo" id="bg" style="height: '+$(window).height()+'px; width: '+$(window).width()+'; left: 0px;">') 
+	}
+	else {
+		document.write('<img src="images/creditos_ancho.png" alt="Fondo" id="bg" style="height: '+$(window).height()+'px; width: '+$(window).width()+'; left: 0px;">') 
+	}
+	document.write('</div>')
+</script>
 		
     </body>
 </html>

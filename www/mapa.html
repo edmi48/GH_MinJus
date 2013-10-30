@@ -333,6 +333,8 @@ function validaconexion (){
 
 function checkConnection() 
 {
+	alert("checkConnection");
+	alert(navigator.connection.type);
 		 if(navigator.connection.type == Connection.NONE){ 
 		  var conexion = 0;
 		  }else{
