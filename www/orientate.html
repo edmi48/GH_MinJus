@@ -35,6 +35,7 @@ function checkConnection()
 	
     function inicializa_db() 
 	{
+	data_busqueda = [];
      db = openDatabase("ejemplo3.db3", "1.0", "Ministerio de Justicia", 500000);
 
   	 db.transaction(function(tx) 
