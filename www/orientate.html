@@ -10,7 +10,7 @@
 	window.onload=inicializa_db;
       var db;
     var data_busqueda = [];
-	//inicializa_db();
+	inicializa_db();
 	
 		function abrir_opcion(pagina) 
 { 
@@ -35,6 +35,7 @@ function checkConnection()
 	
     function inicializa_db() 
 	{
+	data_busqueda = [];
      db = openDatabase("ejemplo3.db3", "1.0", "Ministerio de Justicia", 500000);
 
   	 db.transaction(function(tx) 
@@ -86,7 +87,7 @@ function checkConnection()
         </style>
 </head>
 
-<body>
+<body onload="inicializa_db();">
 <div id="categories" data-role="page" data-title="Oriéntate" style="background-image: url('images/fondo_2.jpg'); background-repeat:no-repeat; background-size:100% 100%; background-position: absolute">
 <div height=200px style="background-image: url('images/cabecera1.png'); background-repeat:no-repeat; background-size:100% 100%; background-position: absolute">
 <div> 
