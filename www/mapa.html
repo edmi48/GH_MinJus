@@ -60,7 +60,7 @@
                 db.transaction( function(tx) {
                         tx.executeSql(sentencia, [],
                                 function(tx, result){
- alert(result.rows.length);
+ //alert(result.rows.length);
                                         for(var i=0; i < result.rows.length; i++)  
 					{
 					
@@ -71,7 +71,7 @@
 					 Telefono_destino_calc = result.rows.item(i)['telefono_lugar'];
 					 Correo_destino_calc = result.rows.item(i)['email'];
 					 calcularDistancia();
-					 alert("8"+i);
+					 //alert("8"+i);
 					 if (i == (result.rows.length-1)) mostrarMapa();
 					}
                                 });
@@ -90,7 +90,7 @@
     // device APIs are available
     //
 function onDeviceReady() {
-	alert("4");
+	//alert("4");
 		navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:3000,timeout:25000,enableHighAccuracy:true});
     }
 
@@ -98,7 +98,7 @@ function onDeviceReady() {
     //
 
 function onSuccess(position) {
-alert("5");
+//alert("5");
         var element = document.getElementById('geolocation');
         /*element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
                             'Longitude: '          + position.coords.longitude             + '<br />' +
@@ -112,7 +112,7 @@ alert("5");
 		Lngori_1=position.coords.longitude;
 		Latori=Latori_1;
 		Lngori=Lngori_1;
-		alert("6");
+		//alert("6");
 		InicializaDatos();
     }
 
@@ -158,12 +158,12 @@ Lngdes = -74.060066;
 			var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);			
 
 function initialize() {
-alert("1");
+//alert("1");
 var url = location.href;
 	var url = location.href;
 	var index = url.indexOf("?");
 	var Entidad = url.substring(index+9, index+13);
-	alert("2");
+	//alert("2");
 	if (Entidad=="Casa"){
 		nom_programa="Casa de Justicia";
 		icon_destino="Casa de Justicia";
@@ -173,7 +173,7 @@ var url = location.href;
 		nom_programa="Centro de Convivencia";
 		icon_destino="Centro de Convivencia Ciudadana";
 	}
-	alert("3");
+	//alert("3");
 	onDeviceReady();		
 	//mostrarMapa();
 }
@@ -198,11 +198,11 @@ function Dist(lat1, lon1, lat2, lon2)
 function calcularDistancia() {
 		if (Latdes_calc<-91 || Latdes_calc>91)
 		{
-//			alert("latitud errada"+Nombre_destino);
+			alert("latitud errada "+Nombre_destino);
 			//return false;
 		}
 		if (Lngdes_calc<-181 || Lngdes_calc>181){
-//			alert("longitud errada"+Nombre_destino);
+			alert("longitud errada "+Nombre_destino);
 			//return false;
 		}
 		
@@ -319,9 +319,9 @@ function mostrarInfo (r_direc, r_nombre,r_tel,r_correo) {
 }
 
 function validaconexion (){
-	alert("valida conexion");
+	//alert("valida conexion");
 	if (checkConnection() == 1) {
-		alert("ok conexion");
+		//alert("ok conexion");
 		initialize();
 	}
 	else  {
@@ -331,19 +331,19 @@ function validaconexion (){
 		});
 		window.location = ("orientate.html"); 
 	} 
-	alert(conexion+"2");
+	//alert(conexion+"2");
 }
 
 function checkConnection() 
 {
-	alert("checkConnection");
-	alert(navigator.connection.type);
+	//alert("checkConnection");
+	//alert(navigator.connection.type);
 		 if(navigator.connection.type == Connection.NONE){ 
 		  conexion = 0;
 		  }else{
 		  conexion = 1;
 		  }
-		  alert(conexion);
+		 // alert(conexion);
 		 return conexion;
 }
 
