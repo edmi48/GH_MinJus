@@ -47,6 +47,7 @@
  var Lngdes2;
  var nom_programa;
  var distancia;
+ var conexion;
  distancia=1000000;
 // InicializaDatos();
 
@@ -329,6 +330,7 @@ function validaconexion (){
 		});
 		window.location = ("orientate.html"); 
 	} 
+	alert(conexion+"2");
 }
 
 function checkConnection() 
@@ -336,10 +338,11 @@ function checkConnection()
 	alert("checkConnection");
 	alert(navigator.connection.type);
 		 if(navigator.connection.type == Connection.NONE){ 
-		  var conexion = 0;
+		  conexion = 0;
 		  }else{
-			var conexion = 1;
+		  conexion = 1;
 		  }
+		  alert(conexion);
 		 return conexion;
 }
 
