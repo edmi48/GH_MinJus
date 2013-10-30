@@ -1,3 +1,20 @@
+function actualiza_progressbar(porc_ini,porc_fin)
+{		
+ var capa = document.getElementById('progressbar');
+ if (porc_fin == '100%') mensaje = 'Actualización Exitosa';
+ else mensaje = 'En progreso.. ';
+ capa.innerHTML = '<span style="width: 0%; color:white;">'+mensaje+'</span>';
+		
+ $(".meter > span").each(function() {
+   $(this)
+   .data("origWidth", $(this).width())
+   .width(porc_ini)
+   .animate({
+   width: porc_fin
+   }, 2000);
+  });		
+}
+
 function actualiza_set_datos()
 {
  var db;
@@ -25,12 +42,16 @@ function actualiza_informacion(tabla, url)
 { 
  var sql_query = new Array();
  var actualizame = 0;
+ var porc_ini = 0;
+ var porc_fin = 20;
  var result = $.ajax({
                     url : url,
                     type : 'GET',
                     dataType : 'json',
                     error: function() { 
-							alert('El catálogo de datos '+tabla+' no se encuentra disponible'); 
+						 $.Zebra_Dialog('<strong>El catálogo de datos '+tabla+' no se encuentra disponible</strong>', {
+							'type':     'error',
+							'title':    'Actualización de Información'});
 						   }
                 });
 
@@ -39,6 +60,9 @@ function actualiza_informacion(tabla, url)
 			var id_palabra = 1;
 			actualizame = 1;
 			alert('Entra a actualizar '+tabla);
+			actualiza_progressbar(porc_ini+'%',porc_fin+'%');
+			porc_ini = porc_fin;
+			porc_fin = porc_fin + 20;
 			$.each(r.d, function(k, v) {
 				if (tabla == 'informacion_programa') 
 				{
@@ -100,10 +124,17 @@ function actualiza_informacion(tabla, url)
                  function(tx, result){
                      for(var i=0; i < result.rows.length; i++) var contador = [result.rows.item(i)['numero']];
 					 alert("Informacion "+tabla+": "+contador);
+					 actualiza_progressbar(porc_ini+'%',porc_fin+'%');
+					 porc_ini = porc_fin;
+					 porc_fin = porc_fin + 20;
 					 if (tabla == 'ubicacion_programa')
+					 {						 
+					  actualiza_progressbar('80%','100%');
+
 			  $.Zebra_Dialog('<strong>Actualización de Información Finalizada exitósamente</strong>', {
 							'type':     'information',
 							'title':    'Actualización de Información'});
+	  				}
                  });		
 			 }
 			}
