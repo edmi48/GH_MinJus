@@ -18,8 +18,8 @@ function actualiza_progressbar(porc_ini,porc_fin)
 function actualiza_set_datos()
 {
  var db;
- $.Zebra_Dialog('<strong>Inicia proceso de actualización de información de click en aceptar y por favor espere un momento a que el proceso finalice...', {
  db = openDatabase("ejemplo3.db3", "1.0", "Ministerio de Justicia", 500000);
+ $.Zebra_Dialog('<strong>Inicia proceso de actualización de información de click en aceptar y por favor espere un momento a que el proceso finalice...', {
     'type':     'information',
     'title':    'Actualización de Información',
     'buttons':  ['Aceptar'],
@@ -59,7 +59,7 @@ function actualiza_informacion(tabla, url)
 		    var id_registro = 1;
 			var id_palabra = 1;
 			actualizame = 1;
-			alert('Entra a actualizar '+tabla);
+			//alert('Entra a actualizar '+tabla);
 			actualiza_progressbar(porc_ini+'%',porc_fin+'%');
 			porc_ini = porc_fin;
 			porc_fin = porc_fin + 20;
@@ -123,7 +123,7 @@ function actualiza_informacion(tabla, url)
               tx.executeSql("Select count(*) as numero From "+tabla, [],
                  function(tx, result){
                      for(var i=0; i < result.rows.length; i++) var contador = [result.rows.item(i)['numero']];
-					 alert("Informacion "+tabla+": "+contador);
+					 //alert("Informacion "+tabla+": "+contador);
 					 actualiza_progressbar(porc_ini+'%',porc_fin+'%');
 					 porc_ini = porc_fin;
 					 porc_fin = porc_fin + 20;

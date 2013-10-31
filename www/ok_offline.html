@@ -26,7 +26,7 @@
 					  contador = result.rows.length - 1; 
                    	  for(var i=0; i < result.rows.length; i++) 
 					  {
-					   if (result.rows.item(i)['departamento'] == result.rows.item(i)['municipio']) ubicacion = result.rows.item(i)['codigo_dane_municipio'];
+					   if (result.rows.item(i)['departamento'] == result.rows.item(i)['municipio']) ubicacion = result.rows.item(i)['departamento'];
 					  else ubicacion = result.rows.item(i)['departamento']+" - "+result.rows.item(i)['municipio']
 
 					   aDataSet.push([result.rows.item(i)['tipo_programa'], ubicacion+" "+result.rows.item(i)['direccion_lugar']+" "+result.rows.item(i)['barrio_lugar'],result.rows.item(i)['telefono_lugar'],result.rows.item(i)['email']]);
@@ -73,7 +73,7 @@ carga();
 	</head>
 	<body id="dt_example" align="center">
 <div id="categories" data-role="page" data-title="Búsqueda de Información" style="background-image: url('images/fondo_2.jpg'); background-repeat:no-repeat; background-size:100% 100%; background-position: absolute">
-<div height=200px style="background-image: url('images/cabecera1.png'); background-repeat:no-repeat; background-size:100% 100%; background-position: absolute">
+<div height=200px style="background-image: url('images/cabecera7.png'); background-repeat:no-repeat; background-size:100% 100%; background-position: absolute">
 <br><br><br><br>
 </div>
 		<div id="container" align="center">			

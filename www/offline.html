@@ -1,86 +1,97 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html class="no-js ui-mobile-rendering" lang="es">
+﻿<html class="no-js ui-mobile-rendering" lang="es">
  <head>
       <title>Búsqueda de Casas de Justicia y Centros de Convivencia Ciudadana</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
       <meta http-equiv="Content-Type" name="viewport" content="width=device-width; initial-scale=1; charset=UTF-8">
 		
-		<style type="text/css" title="currentStyle">
-			@import "css/demo_page.css";
-			@import "css/demo_table.css";
-		</style>
+		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="js/offline.js"></script>
+		
+<script>
+   function abre_popup(programa,ubicacion,direccion,telefono,email)
+   {
+    if (programa == 1) var html = "<b><img src='images/cj.png'>Casa de Justicia</img></b><br>";
+	else var html = "<b><img src='images/ccc.png'>Centro de Convivencia Ciudadana</img></b><br>";
+    html += "<b>"+ubicacion+"</b><br><b>Dirección</b><br>"+direccion+"<br><b>Teléfono(s)</b><br>"+telefono+"<br><b>E-mail(s)</b><br>"+email;
+	var capa = document.getElementById('contenido');
+	capa.innerHTML = html;
+	$( "#popupCloseRight" ).popup( "open", "data-position-to='window'" );
+   }
+
+</script>
+		<script type="text/javascript" language="javascript" src="js/jquery.mobile-1.3.1.js"></script>
+		
+<script>
+ function construye_tabla()
+ {
+  var db;
+  var html="";
+  var container = document.getElementById("tabla")
+  html += "<table border=1 id='tblTabla' align=center><thead><tr><th>Programa</th><th>Ubicación</th>";
+  html += "<th>Más Información</th></tr></thead><tbody>";
+  db = openDatabase("ejemplo3.db3", "1.0", "Ministerio de Justicia", 500000);
+
+        db.transaction( function(tx) {
+            tx.executeSql("SELECT tipo_programa, departamento, municipio, nombre_lugar, direccion_lugar, barrio_lugar, telefono_lugar, email FROM ubicacion_programa order by tipo_programa, departamento, codigo_dane_municipio", [],
+                function(tx, result){
+                    for(var i=0; i < result.rows.length; i++) 
+					{
+					 var propiedad="";
+					 var ubicacion="";
+					 if ((result.rows.item(i)['direccion_lugar'].length > 20) && (result.rows.item(i)['direccion_lugar'].length < 25)) propiedad = 'NOWRAP';
+					 if (result.rows.item(i)['departamento'] == result.rows.item(i)['codigo_dane_municipio']) ubicacion = result.rows.item(i)['municipio'];
+					 else ubicacion = result.rows.item(i)['departamento']+" - "+result.rows.item(i)['municipio']
+					 if (result.rows.item(i)['barrio_lugar'] == 'No Registra') direccion = result.rows.item(i)['direccion_lugar'];
+					 else direccion = result.rows.item(i)['direccion_lugar']+"<br>"+result.rows.item(i)['barrio_lugar'];
+					 if (result.rows.item(i)['tipo_programa'] == 'Casa de Justicia') indicador = 1;
+					 else indicador = 2;
+					 html += "<tr><td>"+result.rows.item(i)['tipo_programa']+"</td><td "+propiedad+"><strong>";
+					 html += ubicacion+"</strong><br>"+direccion;
+					 html += "</td><td><a href='#' OnClick='abre_popup("+indicador+",\""+ubicacion+"\",\""+direccion+"\",\""+result.rows.item(i)['telefono_lugar']+"\",\""+result.rows.item(i)['email']+"\")';> <br>Ver Más..</a></td></tr>";
+                    }
+		html += "</tbody><tfoot width='100%'><tr><td colspan='3'>Resultados de la Búsqueda</td></tr></tfoot></table>";
+  		container.innerHTML=html;
+ 
+                });
+
+        });  
+ }
+ 
+</script>		
 		<link rel="stylesheet" type="text/css" href="css/style_offline.css">
-		<script type="text/javascript" language="javascript" src="js/jquery-1.9.1.min.js"></script>
-		<script type="text/javascript" language="javascript" src="js/jquery.dataTables.js"></script>
-		<script type="text/javascript" charset="utf-8">
-			var aDataSet = [];
-			
-    function carga()
-	{
-     db = openDatabase("ejemplo3.db3", "1.0", "Ministerio de Justicia", 500000);
-
- 	 db.transaction(function(tx) 
-				    {
-            	  	 tx.executeSql("SELECT tipo_programa, departamento, municipio, nombre_lugar, direccion_lugar, barrio_lugar, telefono_lugar, email FROM ubicacion_programa order by tipo_programa, departamento, municipio", [],
-                  	 function(tx, result)
-					 {
-					  contador = result.rows.length - 1; 
-                   	  for(var i=0; i < result.rows.length; i++) 
-					  {
-					   if (result.rows.item(i)['departamento'] == result.rows.item(i)['municipio']) ubicacion = result.rows.item(i)['codigo_dane_municipio'];
-					  else ubicacion = result.rows.item(i)['departamento']+" - "+result.rows.item(i)['municipio']
-
-					   aDataSet.push([result.rows.item(i)['tipo_programa'], ubicacion+" "+result.rows.item(i)['direccion_lugar']+" "+result.rows.item(i)['barrio_lugar'],result.rows.item(i)['telefono_lugar'],result.rows.item(i)['email']]);
-                   	  }
-
-			$('#dynamic').html( '<table cellpadding="0" cellspacing="0" border="0" class="display" id="tblTabla"></table>' );
-				$('#tblTabla').dataTable( {
-					"sPaginationType": "full_numbers",
-					"oLanguage": {
-            "sLengthMenu": "Mostrar _MENU_ records por página",
-            "sZeroRecords": "No hay resultados, intente otra b&uacute;squeda",
-            "sInfo": "Registro del _START_ a _END_ de _TOTAL_ registros",
-            "sInfoEmpty": "Registro 0 a 0 de 0 records",
-            "sInfoFiltered": "(filtered from _MAX_ total records)",
-					"sSearch": "Buscar:",
-			      "oPaginate": {
-        "sFirst": "Inicio",
-		"sLast": "Fin",
-		"sPrevious": "Ant",
-		"sNext": "Sig",
-      }	
-        },
-		"bLengthChange": false,
-		"bAutoWidth": false,
-					"iDisplayLength": 5,
-			
-					"aaData": aDataSet,
-					"aoColumns": [
-						{ "sTitle": "Programa", "sWidth": "80px" },
-						{ "sTitle": "Ubicación", "sWidth": "160px" },
-						{ "sTitle": "Teléfono", "sWidth": "80px" },
-						{ "sTitle": "E-mail", "sWidth": "80px" }
-					]
-				} );				
-                  	 });
-                 	});		 
-	}
-	
-carga();
-		</script>
       <link rel="stylesheet" href="css/jquery.mobile-1.3.1.min.css" />
       <script src="js/libs/require.js" data-main="js/mobile"></script>
-
 	</head>
-	<body id="dt_example" align="center">
+	<body>
 <div id="categories" data-role="page" data-title="Búsqueda de Información" style="background-image: url('images/fondo_2.jpg'); background-repeat:no-repeat; background-size:100% 100%; background-position: absolute">
-<div height=200px style="background-image: url('images/cabecera1.png'); background-repeat:no-repeat; background-size:100% 100%; background-position: absolute">
-<br><br><br><br>
+<div height=200px style="background-image: url('images/cabecera7.png'); background-repeat:no-repeat; background-size:100% 100%; background-position: absolute">
+<div> 
+<a href="orientate.html" rel="external"> <img src="images/regresar.png" class="imagen-link" height="60px" width="60px" align="left" style="margin: 5px 8px"></a>
 </div>
-		<div id="container" align="center">			
-			<div id="dynamic" align="center"></div>
-		</div>	
-			
-	 <p><a href="orientate.html" data-direction="reverse" data-role="button" data-theme="b">Regresar</a></p>			
-			
+<br><br><br><br><br>
+</div>
+<br>	
+		<div id="divContenedor">
+			<div id="divTabla" align=center>			
+				<table border=0 align=center><tr><td><input type="text" name="name" id="busqueda" /></td><td>
+				<a href="#" data-role="button" data-mini="true" data-icon="search" OnClick="javascript:busca_tabla($(tblTabla),document.getElementById('busqueda').value);">Buscar</a>
+				</td></tr></table>
+				<br>
+				<div id="tabla">
+				</div>
+				<script> 
+				construye_tabla();				
+				</script>
+			</div>
+		</div>
+		<div data-role="popup" id="popupCloseRight" class="ui-content" style="max-width:280px" align="center">
+			<a href="#" data-rel="back" data-role="button" data-theme="a" data-icon="delete" data-iconpos="notext" class="ui-btn-right">Close</a>
+			<div id="contenido"></div>
+		</div>		
+		
+	</div>
+
+
 	</body>
 </html>
