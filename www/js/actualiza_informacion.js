@@ -1,4 +1,4 @@
-function actualiza_progressbar(porc_ini,porc_fin)
+function actualiza_progressbar(por_ini,por_fin)
 {		
  var capa = document.getElementById('progressbar');
  if (porc_fin == '100%') mensaje = 'Actualización Exitosa';
@@ -8,9 +8,9 @@ function actualiza_progressbar(porc_ini,porc_fin)
  $(".meter > span").each(function() {
    $(this)
    .data("origWidth", $(this).width())
-   .width(porc_ini)
+   .width(por_ini)
    .animate({
-   width: porc_fin
+   width: por_fin
    }, 2000);
   });		
 }
@@ -18,7 +18,12 @@ function actualiza_progressbar(porc_ini,porc_fin)
 function actualiza_set_datos()
 {
  var db;
+ var porc_ini = 0;
+ var porc_fin = 20;
  db = openDatabase("ejemplo3.db3", "1.0", "Ministerio de Justicia", 500000);
+ actualiza_progressbar(porc_ini+'%',porc_fin+'%');
+ porc_ini = porc_fin;
+ porc_fin = porc_fin + 20;
  $.Zebra_Dialog('<strong>Inicia proceso de actualización de información de click en aceptar y por favor espere un momento a que el proceso finalice...', {
     'type':     'information',
     'title':    'Actualización de Información',
@@ -42,8 +47,6 @@ function actualiza_informacion(tabla, url)
 { 
  var sql_query = new Array();
  var actualizame = 0;
- var porc_ini = 0;
- var porc_fin = 20;
  var result = $.ajax({
                     url : url,
                     type : 'GET',
@@ -62,7 +65,7 @@ function actualiza_informacion(tabla, url)
 			//alert('Entra a actualizar '+tabla);
 			actualiza_progressbar(porc_ini+'%',porc_fin+'%');
 			porc_ini = porc_fin;
-			porc_fin = porc_fin + 20;
+			porc_fin = porc_fin + 30;
 			$.each(r.d, function(k, v) {
 				if (tabla == 'informacion_programa') 
 				{
@@ -124,9 +127,6 @@ function actualiza_informacion(tabla, url)
                  function(tx, result){
                      for(var i=0; i < result.rows.length; i++) var contador = [result.rows.item(i)['numero']];
 					 //alert("Informacion "+tabla+": "+contador);
-					 actualiza_progressbar(porc_ini+'%',porc_fin+'%');
-					 porc_ini = porc_fin;
-					 porc_fin = porc_fin + 20;
 					 if (tabla == 'ubicacion_programa')
 					 {						 
 					  actualiza_progressbar('80%','100%');
