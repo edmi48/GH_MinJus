@@ -287,7 +287,8 @@ function abrir_twitter()
 </head>
 <body onresize="window.location.reload();" onload="inicializa_db();">
 		<script> 
-		
+		document.write('<div class="meter nostripes" id="progressbar" width="90%">');
+		document.write('</div>');
 		</script>
 		
 <script> document.write('<div class="navigation" id="navigata" style="min-width: auto; height: '+ventana_alto2+'px; margin: auto auto">') </script>
@@ -298,8 +299,6 @@ function abrir_twitter()
 	else {
 		document.write('<img src="images/fondo_ancho.png" alt="Fondo" id="bg" style="height: '+ventana_alto2+'px; width: auto; left: 0px;">') 
 	}
-	document.write('<div class="meter nostripes" id="progressbar" width="90%">');
-		document.write('</div>');
 </script>
 
 <script> 
