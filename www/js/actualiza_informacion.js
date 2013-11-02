@@ -1,7 +1,7 @@
 function actualiza_progressbar(por_ini,por_fin)
 {		
  var capa = document.getElementById('progressbar');
- if (porc_fin == '100%') mensaje = 'Actualización Exitosa';
+ if (por_fin == '100%') mensaje = 'Actualización Exitosa';
  else mensaje = 'En progreso.. ';
  capa.innerHTML = '<span style="width: 0%; color:white;">'+mensaje+'</span>';
 		
