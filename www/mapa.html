@@ -85,12 +85,12 @@
 			
 	// Wait for device API libraries to load
     //
-    document.addEventListener("deviceready", onDeviceReady, false);
+   // document.addEventListener("deviceready", onDeviceReady, false);
     // device APIs are available
     //
 function onDeviceReady() {
 	alert("4");
-		navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:3000,timeout:25000,enableHighAccuracy:true});
+		navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:3000,timeout:60000,enableHighAccuracy:true});
     }
 
     // onSuccess Geolocation
