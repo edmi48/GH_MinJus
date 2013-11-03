@@ -206,7 +206,7 @@
 	  var ventana_medio = ventana_alto2/2;
   
 	  if ($(window).width() < $(window).height()) factor = 7.22;
-	 else factor = 6.30;
+	 else factor = 6.50;
 
 	 
 	 
@@ -334,8 +334,15 @@ function abrir_twitter()
  }
  else 
  {
-		icon_alto = ($(window).height())/8;				
-		icon_ancho = ($(window).height())/9;
+		if ($(window).width() < $(window).height()) {
+			icon_alto = ($(window).height())/9;				
+			icon_ancho = ($(window).height())/10;
+		}
+		else
+		{
+			icon_alto = ($(window).height())/7;				
+			icon_ancho = ($(window).height())/8;
+		}
 		document.write('<div class="item shop">')
                 document.write('<a href="#" onclick=\'abrir_opcion("orientate.html",0);return false\'><img src="images/opcion1.png" class="imagen-link" height="'+icon_alto+'px" width="'+icon_ancho+'px" ></a>')
 		document.write('</div>')
