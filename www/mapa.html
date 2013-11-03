@@ -123,9 +123,9 @@ function onError(error) {
 		alert("No es posible ingresar a la funcionalidad por denegar permisos de ubicación");
 		//window.location="index.html";
 	}
-	/*else if(error.code==3)
+	else if(error.code==3)
 	{
-		alert("La conexión a Internet no es buena y no es posible visualizar el mapa");
+		//alert("La conexión a Internet no es buena y no es posible visualizar el mapa");
 		//window.location="index.html";
 	}*/
 	else {
@@ -235,7 +235,7 @@ function mostrarMapa(){
 				showDirections();
 				map = new google.maps.Map(document.getElementById('map_canvas'), {
 					center : mtv,
-					zoom : 7,
+					zoom : 17,
 					mapTypeId : 'roadmap',
 					icon: 'images/derecha.png'
 				});
