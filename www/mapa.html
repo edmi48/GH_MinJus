@@ -117,7 +117,7 @@ function onSuccess(position) {
 
     // onError Callback receives a PositionError object
     //
-function onError2(error) {
+function onError(error) {
 	if(error.code==1)
 	{
 		alert("No es posible ingresar a la funcionalidad por denegar permisos de ubicación");
@@ -128,7 +128,7 @@ function onError2(error) {
 		alert("La conexión a Internet no es buena y no es posible visualizar el mapa");
 		//window.location="index.html";
 	}
-	else if(error.code==3)
+	else if(error.code==2)
 	{
 		alert("Verifique la conexiòn a internet o si tiene activado el GPS");
 		//window.location="index.html";
