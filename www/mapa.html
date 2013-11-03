@@ -121,19 +121,20 @@ function onError(error) {
 	if(error.code==1)
 	{
 		alert("No es posible ingresar a la funcionalidad por denegar permisos de ubicación");
-		//window.location="index.html";
+		window.location="index.html";
 	}
 	else if(error.code==3)
 	{
 		alert("La conexión a Internet no es buena y no es posible visualizar el mapa");
-		//window.location="index.html";
+		window.location="index.html";
 	}
 	else if(error.code==2)
 	{
 		alert("Verifique la conexiòn a internet o si tiene activado el GPS");
-		//window.location="index.html";
+		window.location="index.html";
 	}
 	else {
+		alert("error");
         //alert('code: '    + error.code    + '\n' +
          //     'message: ' + error.message + '\n');
 		//window.location="index.html";
