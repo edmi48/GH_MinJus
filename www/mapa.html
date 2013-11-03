@@ -336,11 +336,11 @@ function mostrarInfo (r_direc, r_nombre,r_tel,r_correo) {
 function validaconexion (){
 	//alert("valida conexion");
 	if (checkConnection() == 1) {
-		//alert("ok conexion");
+		alert("ok conexion");
 		initialize();
 	}
 	else  {
-	//alert("NOooooo conexion");
+	alert("NOooooo conexion");
 		$.Zebra_Dialog('<strong>No es posible ejecutar esta funcionalidad sin Conexión a Internet</strong>', {
 			'type':     'error',
 			'title':    'Sin Conexión a Internet'
