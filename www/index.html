@@ -247,8 +247,8 @@ else  $.Zebra_Dialog('<strong>No es posible ejecutar esta funcionalidad sin Cone
 
 function abrir_twitter()
 {
-	if (checkConnection() == 1) {
-		window.open('https://mobile.twitter.com/MinjusticiaCo', '_blank', 'location=NO');
+	if (checkConnection() == 0) {
+		window.open('https://mobile.twitter.com/MinjusticiaCo', '_blank');
 	}
 	else  $.Zebra_Dialog('<strong>No es posible ejecutar esta funcionalidad sin Conexión a Internet</strong>', {
 		'type':     'error',
