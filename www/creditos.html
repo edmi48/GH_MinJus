@@ -19,11 +19,11 @@ var bg = jQuery("#bg");
 ratio = 1;
  
 if (screenWidth/screenHeight > ratio) {
-$(bg).height("95%");
+$(bg).height($(window).height()-95);
 $(bg).width("100%");
 } else {
 $(bg).width("100%");
-$(bg).height("90%");
+$(bg).height($(window).height()-95);
 }
  
 // Si a la imagen le sobra anchura, la centramos a mano
