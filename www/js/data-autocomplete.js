@@ -120,8 +120,8 @@ function mapa(entidad)
 
 function checkConnection() 
 {
-	alert("checkConnection");
-	alert(navigator.connection.type);
+	//alert("checkConnection");
+	//alert(navigator.connection.type);
 		 if(navigator.connection.type == Connection.NONE){ 
 		  var conexion = 0;
 		  }else{
