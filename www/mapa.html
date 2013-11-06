@@ -62,7 +62,7 @@
                 db.transaction( function(tx) {
                         tx.executeSql(sentencia, [],
                                 function(tx, result){
- //alert(result.rows.length);
+ alert(result.rows.length);
                                         for(var i=0; i < result.rows.length; i++)  
 					{
 					
@@ -73,7 +73,7 @@
 					 Telefono_destino_calc = result.rows.item(i)['telefono_lugar'];
 					 Correo_destino_calc = result.rows.item(i)['email'];
 					 calcularDistancia();
-					 //alert("8"+i);
+					 alert("8"+i);
 					 if (i == (result.rows.length-1)) mostrarMapa();
 					}
                                 });
@@ -92,7 +92,7 @@
     // device APIs are available
     //
 function onDeviceReady() {
-	//alert("4");
+	alert("4");
 		navigator.geolocation.getCurrentPosition(onSuccess, onError, {maximumAge:3000,timeout:30000,enableHighAccuracy:true});
     }
 
@@ -100,7 +100,7 @@ function onDeviceReady() {
     //
 
 function onSuccess(position) {
-//alert("5");
+alert("5");
         var element = document.getElementById('geolocation');
         /*element.innerHTML = 'Latitude: '           + position.coords.latitude              + '<br />' +
                             'Longitude: '          + position.coords.longitude             + '<br />' +
@@ -173,12 +173,12 @@ Lngdes = -74.060066;
 			var directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);			
 
 function initialize() {
-//alert("1");
+alert("1");
 var url = location.href;
 	var url = location.href;
 	var index = url.indexOf("?");
 	var Entidad = url.substring(index+9, index+13);
-	//alert("2");
+	alert("2");
 	if (Entidad=="Casa"){
 		nom_programa="Casa de Justicia";
 		icon_destino="Casa de Justicia";
@@ -188,7 +188,7 @@ var url = location.href;
 		nom_programa="Centro de Convivencia";
 		icon_destino="Centro de Convivencia Ciudadana";
 	}
-	//alert("3");
+	alert("3");
 	onDeviceReady();		
 	//mostrarMapa();
 }
@@ -240,7 +240,7 @@ function mostrarMapa(){
 			MyDestination = new google.maps.LatLng(Latdes, Lngdes);
 			directionsService = new google.maps.DirectionsService();
 			directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
-			//alert("motrar mapa");
+			alert("motrar mapa");
 			var mtv = new google.maps.LatLng(Latori, Lngori);
 				showDirections();
 				map = new google.maps.Map(document.getElementById('map_canvas'), {
@@ -336,7 +336,7 @@ function mostrarInfo (r_direc, r_nombre,r_tel,r_correo) {
 function validaconexion (){
 	//alert("valida conexion");
 	if (checkConnection() == 1) {
-	//	alert("ok conexion");
+		alert("ok conexion");
 		initialize();
 	}
 	else  {
