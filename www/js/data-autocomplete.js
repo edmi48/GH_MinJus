@@ -92,7 +92,7 @@ function carga_informacion(sql,objeto,info)
 						  
 						}
 					   }
-					   alert(html);
+					   alert("ruta: "+html);
 					   $(objeto).html(html);
                   	 });	
                   	 });	

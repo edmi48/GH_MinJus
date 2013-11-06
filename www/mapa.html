@@ -73,7 +73,7 @@
 					 Telefono_destino_calc = result.rows.item(i)['telefono_lugar'];
 					 Correo_destino_calc = result.rows.item(i)['email'];
 					 calcularDistancia();
-					 alert("8"+i);
+					 //alert("8"+i);
 					 if (i == (result.rows.length-1)) mostrarMapa();
 					}
                                 });
@@ -334,7 +334,7 @@ function mostrarInfo (r_direc, r_nombre,r_tel,r_correo) {
 }
 
 function validaconexion (){
-	//alert("valida conexion");
+	alert("valida conexion");
 	if (checkConnection() == 1) {
 		alert("ok conexion");
 		initialize();
