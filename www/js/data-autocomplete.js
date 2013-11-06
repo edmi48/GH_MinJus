@@ -37,14 +37,14 @@ $(function(){
 										    if (result.rows.item(i)['programa'] == 'Casa de Justicia')
 										    {
 										     document.getElementById('casa_justicia').style.display = 'block'; 
-											 sql = "SELECT a.descripcion_tipo_informacion, a.entidad_encargada FROM informacion_programa a, palabra_clave b Where a.id_programa = b.id_programa and a.programa = 'Casa de Justicia' and b.nombre_palabra_clave = '"+ suggestion.value +"' Order by 1";											 
+											 sql = "SELECT a.programa, a.descripcion_tipo_informacion, a.entidad_encargada FROM informacion_programa a, palabra_clave b Where a.id_programa = b.id_programa and a.programa = 'Casa de Justicia' and b.nombre_palabra_clave = '"+ suggestion.value +"' Order by 1";											 
 											 carga_informacion(sql,'#result1',2);
 										    }
 										    else
 										    if (result.rows.item(i)['programa'] == 'Centro de Convivencia Ciudadana')
 										    {
 										     document.getElementById('centro_convivencia').style.display = 'block'; 
-											 sql = "SELECT a.descripcion_tipo_informacion, a.entidad_encargada FROM informacion_programa a, palabra_clave b Where a.id_programa = b.id_programa and a.programa = 'Centro de Convivencia Ciudadana' and b.nombre_palabra_clave = '"+ suggestion.value +"' Order by 1";											 
+											 sql = "SELECT a.programa, a.descripcion_tipo_informacion, a.entidad_encargada FROM informacion_programa a, palabra_clave b Where a.id_programa = b.id_programa and a.programa = 'Centro de Convivencia Ciudadana' and b.nombre_palabra_clave = '"+ suggestion.value +"' Order by 1";											 
 											 carga_informacion(sql,'#result2',2);
 										    }
 										 
