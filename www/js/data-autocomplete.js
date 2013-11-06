@@ -80,7 +80,7 @@ function carga_informacion(sql,objeto,info)
 						if (j == 0) var html = "";
 						if (info == 2)
 						{
-					     html = '<a href="#" onclick=\'mapa('+result2.rows.item(j)['programa']+');\'>' + result2.rows.item(j)['entidad_encargada'] + ' (Ver mapa)</a> <br> ' + result2.rows.item(j)['descripcion_tipo_informacion'];
+					     html = '<a href="#" onclick="mapa(\''+result2.rows.item(j)['programa']+'\')">' + result2.rows.item(j)['entidad_encargada'] + ' (Ver mapa)</a> <br> ' + result2.rows.item(j)['descripcion_tipo_informacion'];
 						 //html = '<a href="mapa.html?Entidad='+result2.rows.item(j)['programa']+'" target="_self">' + result2.rows.item(j)['entidad_encargada'] + ' (Ver mapa)</a> <br> ' + result2.rows.item(j)['descripcion_tipo_informacion'];
 						 if ((j-1) < result2.rows.length) html += '<br><br>';
 						} 
@@ -90,7 +90,7 @@ function carga_informacion(sql,objeto,info)
 						  else icono = 'images/ccc.png';
 					      //var thehtml = '<a href="#" onclick=\'abrir_opcion("mapa.html?Entidad='+suggestion.data+'");return false\'><img src="'+icono+'" height="42" width="42">&nbsp;&nbsp;' + suggestion.data + ' (Ver mapa)</a> <br> <strong>Entidad Encargada</strong> ' + suggestion.data2 + ' <br> <strong>Descripción Conflicto:</strong> ' + suggestion.data3;
 						  //html = '<a href="mapa.html?Entidad='+result2.rows.item(j)['programa']+'" target="_self"><img src="'+icono+'" height="42" width="42">&nbsp;&nbsp;' + result2.rows.item(j)['programa'] + ' (Ver mapa)</a> <br><strong>' + result2.rows.item(j)['entidad_encargada'] + '</strong> <br>' + result2.rows.item(j)['descripcion_tipo_informacion'];
-						  html = '<a href="#" onclick="alert(\'Hola\')"><img src="'+icono+'" height="42" width="42">&nbsp;&nbsp;' + result2.rows.item(j)['programa'] + ' (Ver mapa)</a> <br><strong>' + result2.rows.item(j)['entidad_encargada'] + '</strong> <br>' + result2.rows.item(j)['descripcion_tipo_informacion'];
+						  html = '<a href="#" onclick="mapa(\''+result2.rows.item(j)['programa']+'\')"><img src="'+icono+'" height="42" width="42">&nbsp;&nbsp;' + result2.rows.item(j)['programa'] + ' (Ver mapa)</a> <br><strong>' + result2.rows.item(j)['entidad_encargada'] + '</strong> <br>' + result2.rows.item(j)['descripcion_tipo_informacion'];
 						  
 						}
 					   }
@@ -101,6 +101,13 @@ function carga_informacion(sql,objeto,info)
 
 function mapa(entidad)
 {
-	alert('Hola');
- 
+  var db;
+	db = openDatabase("ejemplo3.db3", "1.0", "Ministerio de Justicia", 500000);
+    sentencia = "update parametro set valor_parametro = '"+entidad+"' where codigo_tparametro = 5";
+               db.transaction( function(tx) {
+                        tx.executeSql(sentencia, [],
+                                function(tx, result){
+									     window.location = ("mapa.html"); 
+										 });
+								   }); 
 }
