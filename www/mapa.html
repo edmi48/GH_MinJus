@@ -195,7 +195,7 @@ var url = location.href;
 										  icon_destino="Centro de Convivencia Ciudadana";
 										 }
 	//alert("3");						 
-										 alert(result.rows.item(0)['valor_parametro']);
+										 //alert(result.rows.item(0)['valor_parametro']);
 										 onDeviceReady();		
 	//mostrarMapa();										 
 								})
@@ -249,7 +249,7 @@ function mostrarMapa(){
 			MyDestination = new google.maps.LatLng(Latdes, Lngdes);
 			directionsService = new google.maps.DirectionsService();
 			directionsDisplay = new google.maps.DirectionsRenderer(rendererOptions);
-			alert("motrar mapa");
+			//alert("motrar mapa");
 			var mtv = new google.maps.LatLng(Latori, Lngori);
 				showDirections();
 				map = new google.maps.Map(document.getElementById('map_canvas'), {

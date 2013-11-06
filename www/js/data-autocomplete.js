@@ -80,7 +80,7 @@ function carga_informacion(sql,objeto,info)
 						if (j == 0) var html = "";
 						if (info == 2)
 						{
-					     html = '<a href="#" onclick="mapa(\''+result2.rows.item(j)['programa']+'\')">' + result2.rows.item(j)['entidad_encargada'] + ' (Ver mapa)</a> <br> ' + result2.rows.item(j)['descripcion_tipo_informacion'];
+					     html += '<a href="#" onclick="mapa(\''+result2.rows.item(j)['programa']+'\')">' + result2.rows.item(j)['entidad_encargada'] + ' (Ver mapa)</a> <br> ' + result2.rows.item(j)['descripcion_tipo_informacion'];
 						 //html = '<a href="mapa.html?Entidad='+result2.rows.item(j)['programa']+'" target="_self">' + result2.rows.item(j)['entidad_encargada'] + ' (Ver mapa)</a> <br> ' + result2.rows.item(j)['descripcion_tipo_informacion'];
 						 if ((j-1) < result2.rows.length) html += '<br><br>';
 						} 
