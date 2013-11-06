@@ -88,7 +88,8 @@ function carga_informacion(sql,objeto,info)
 						  if (result2.rows.item(j)['programa'] == 'Casa de Justicia') icono = 'images/cj.png';
 						  else icono = 'images/ccc.png';
 					      //var thehtml = '<a href="#" onclick=\'abrir_opcion("mapa.html?Entidad='+suggestion.data+'");return false\'><img src="'+icono+'" height="42" width="42">&nbsp;&nbsp;' + suggestion.data + ' (Ver mapa)</a> <br> <strong>Entidad Encargada</strong> ' + suggestion.data2 + ' <br> <strong>Descripción Conflicto:</strong> ' + suggestion.data3;
-						  html = '<a href="mapa.html?Entidad='+result2.rows.item(j)['programa']+' target="_self"><img src="'+icono+'" height="42" width="42">&nbsp;&nbsp;' + result2.rows.item(j)['programa'] + ' (Ver mapa)</a> <br><strong>' + result2.rows.item(j)['entidad_encargada'] + '</strong> <br>' + result2.rows.item(j)['descripcion_tipo_informacion'];
+						  html = '<a href="mapa.html?Entidad='+result2.rows.item(j)['programa']+'" target="_self"><img src="'+icono+'" height="42" width="42">&nbsp;&nbsp;' + result2.rows.item(j)['programa'] + ' (Ver mapa)</a> <br><strong>' + result2.rows.item(j)['entidad_encargada'] + '</strong> <br>' + result2.rows.item(j)['descripcion_tipo_informacion'];
+						  alert(html);
 						}
 					   }
 					   $(objeto).html(html);
